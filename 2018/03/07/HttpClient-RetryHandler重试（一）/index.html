@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//litten.me">
-  <title>Simon 的博客</title>
+  <title>HttpClient-RetryHandler重试（一） | Simon 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="专注于后端、互联网的开发。此为博客一枚。">
+  <meta name="description" content="目前的项目接口都是http，因此在java项目中使用apache httpclient进行数据传输、访问。  目前程序中涉及到需要callback操作，product需要被动的接收consume的处理状态，为了最大程度的能够callback成功因此consume在http调用出现问题（如：服务不可用、异常、超时）情况下需要进行重试（retry request），在这里我列举出我找到的retry方">
 <meta name="keywords" content="专注于后端、互联网的开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Simon 的博客">
-<meta property="og:url" content="//litten.me/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HttpClient-RetryHandler重试（一）">
+<meta property="og:url" content="//litten.me/2018/03/07/HttpClient-RetryHandler重试（一）/index.html">
 <meta property="og:site_name" content="Simon 的博客">
-<meta property="og:description" content="专注于后端、互联网的开发。此为博客一枚。">
+<meta property="og:description" content="目前的项目接口都是http，因此在java项目中使用apache httpclient进行数据传输、访问。  目前程序中涉及到需要callback操作，product需要被动的接收consume的处理状态，为了最大程度的能够callback成功因此consume在http调用出现问题（如：服务不可用、异常、超时）情况下需要进行重试（retry request），在这里我列举出我找到的retry方">
+<meta property="og:updated_time" content="2018-03-07T02:26:00.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Simon 的博客">
-<meta name="twitter:description" content="专注于后端、互联网的开发。此为博客一枚。">
+<meta name="twitter:title" content="HttpClient-RetryHandler重试（一）">
+<meta name="twitter:description" content="目前的项目接口都是http，因此在java项目中使用apache httpclient进行数据传输、访问。  目前程序中涉及到需要callback操作，product需要被动的接收consume的处理状态，为了最大程度的能够callback成功因此consume在http调用出现问题（如：服务不可用、异常、超时）情况下需要进行重试（retry request），在这里我列举出我找到的retry方">
   
     <link rel="alternative" href="/atom.xml" title="Simon 的博客" type="application/atom+xml">
   
@@ -147,16 +148,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-HttpClient-RetryHandler重试（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-HttpClient-RetryHandler重试（一）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/07/HttpClient-RetryHandler重试（一）/">HttpClient-RetryHandler重试（一）</a>
+    <h1 class="article-title" itemprop="name">
+      HttpClient-RetryHandler重试（一）
     </h1>
   
 
@@ -206,16 +205,75 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/07/HttpClient-RetryHandler重试（一）/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://litten.me/2018/03/07/HttpClient-RetryHandler重试（一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/24/Github-SSH-提交配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Github SSH 提交配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -235,420 +293,24 @@ var _hmt = _hmt || [];
 
 
 
-
   
-    <article id="post-Github-SSH-提交配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/24/Github-SSH-提交配置/">Github SSH 提交配置</a>
-    </h1>
   
 
-        
-        <a href="/2018/02/24/Github-SSH-提交配置/" class="archive-article-date">
-  	<time datetime="2018-02-24T09:00:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Git可以通过https方式和ssh方式连接服务器上的仓库。</p>
-<p><strong>两者比较：</strong><br><strong>1.https：</strong> 比较方便，但是每次fetch和push代码都需要输入账号和密码，略显麻烦<br><strong>2.ssh：</strong> 传输前压缩数据，传输效率高，不需要每次提供账号密码</p>
-<h2 id="一、Git的user-name和email设置"><a href="#一、Git的user-name和email设置" class="headerlink" title="一、Git的user name和email设置"></a>一、Git的user name和email设置</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global user.name <span class="string">"xxxx"</span></span><br><span class="line">$ git<span class="built_in"> config </span>--global user.email <span class="string">"xxxx@163.com"</span>12</span><br></pre></td></tr></table></figure>
-<h2 id="二、生成密钥"><a href="#二、生成密钥" class="headerlink" title="二、生成密钥"></a>二、生成密钥</h2><p>使用你注册github的邮箱生成秘钥</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -C <span class="string">"xxxx@163.com"</span>1</span></span><br></pre></td></tr></table></figure>
-<p>中间连续3次Enter键</p>
-<p><img src="http://img.blog.csdn.net/20160924224629087" alt="这里写图片描述"></p>
-<p>.ssh目录会生成id_rsa和id_rsa.pub两个文件，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人（关于RSA加密，可以自行百度，这里不详细展开）</p>
-<p>如果之前此电脑已经生成过密钥，根据提示在overwrite的时候选择 y 覆盖即可。</p>
-<h2 id="三、添加SSH-key到github账户"><a href="#三、添加SSH-key到github账户" class="headerlink" title="三、添加SSH key到github账户"></a>三、添加SSH key到github账户</h2><p><strong>在GitHub的账户添加SSH Key，GitHub才能根据此进行加密解密，从而判断此提交是由你本人操作。</strong></p>
-<p><img src="http://img.blog.csdn.net/20160924225334431" alt="这里写图片描述"></p>
-<h2 id="四、测试SSH-key是否设置成功"><a href="#四、测试SSH-key是否设置成功" class="headerlink" title="四、测试SSH key是否设置成功"></a>四、测试SSH key是否设置成功</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh -T git<span class="variable">@github</span>.com1</span><br></pre></td></tr></table></figure>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity <span class="keyword">of</span> host <span class="comment">'github.com (192.30.253.113)' can't be established.</span></span><br><span class="line">RSA <span class="keyword">key</span> fingerprint <span class="keyword">is</span> SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span><br><span class="line">Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)? yes123</span><br></pre></td></tr></table></figure>
-<p>是否继续连接？输入 yes</p>
-<p>输出如下，则表示通过</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi xxxx! You<span class="symbol">'ve</span> successfully authenticated, but GitHub does <span class="keyword">not</span> provide shell        <span class="keyword">access</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="五、设置项目连接方式"><a href="#五、设置项目连接方式" class="headerlink" title="五、设置项目连接方式"></a>五、设置项目连接方式</h2><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="string">git@</span><span class="string">github.</span><span class="string">com:oDevilo/</span><span class="string">Java-Base1</span></span><br></pre></td></tr></table></figure>
-<p>这里修改的是项目中 .git （隐藏）文件夹下的config文件<br>原来如下：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">    url = <span class="symbol">https:</span>/<span class="regexp">/github.com/o</span>Devilo/Java-Base</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/origin/*</span><span class="number">123</span></span><br></pre></td></tr></table></figure>
-<p>修改后：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>oDevilo/Java-Base</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/origin/*</span><span class="number">123</span></span><br></pre></td></tr></table></figure>
-<p>之后我们的提交都会变为ssh连接</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/24/Github-SSH-提交配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-Intellij-idea-常用快捷键及设置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/24/Intellij-idea-常用快捷键及设置/">Intellij idea 常用快捷键及设置</a>
-    </h1>
+  <div id="SOHUCS" sid="HttpClient-RetryHandler重试（一）" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cysX3aGWt",
+        conf: "prod_1dcda447175aada96edcdb7e412338fa"
+    });
+</script>
+</script>
   
 
-        
-        <a href="/2018/02/24/Intellij-idea-常用快捷键及设置/" class="archive-article-date">
-  	<time datetime="2018-02-24T05:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、常用快捷键</p>
-<p>ctrl + shift + a               查找相关功能键</p>
-<p>ctrl + n                        可以快速打开类</p>
-<p>ctrl + alt + t                      快速生成 if else  try catch  语句</p>
-<p>ctrl + r                      替换文本</p>
-<p>ctrl + f                        查找文本</p>
-<p>ctrl + h                     查看一个接口或类的继承</p>
-<p>alt + shift + up/down      上/下移一行</p>
-<p>ctrl+shift+slt+n          查找类中的方法或变量</p>
-<p>ctrl + alt + L            代码格式化</p>
-<p>ctrl + y             删除所在行</p>
-<p>ctrl + d             复制一行</p>
-<p>alt + 1              展开左边窗口</p>
-<p>alt + 7             显示一个类 的所有方法</p>
-<p>ctrl + /              注释单行</p>
-<p>ctrl + shift + /          注释多行</p>
-<p>shift + f6             重命名</p>
-<p>alt + insert            创建包或者类 选中文件夹</p>
-<p>-—————————————————————————————————————————</p>
-<p>2、循环各种对象快捷键</p>
-<p>itar 生成array for代码块</p>
-<p>for (int i = 0; i &lt; args.length; i++) {</p>
-<p>​    String arg = args[i];</p>
-<p>​    </p>
-<p>}</p>
-<p>itco 生成Collection迭代 </p>
-<p>for (Iterator<string> iterator = list.iterator(); iterator.hasNext(); ) {</string></p>
-<p>​    String next =  iterator.next();</p>
-<p>​    </p>
-<p>}</p>
-<p>iten 生成enumeration遍历</p>
-<p>iter 生成增强for循环</p>
-<p>for (String s : list) {</p>
-<p>​    </p>
-<p>}</p>
-<p>itli 生成List的遍历</p>
-<p>for (int i = 0; i &lt; list.size(); i++) {</p>
-<p>​    String s =  list.get(i);</p>
-<p>​    </p>
-<p>}</p>
-<p>itit  生成iterator 迭代</p>
-<p>while (iterator.hasNext()) {</p>
-<p>​    Object next =  iterator.next();</p>
-<p>​    </p>
-<p>}</p>
-<p>ittok 生成String token遍历</p>
-<p>itve 生成Vector数组迭代</p>
-<p>-———————————————————————————————————————</p>
-<p>3、常用设置</p>
-<ol>
-<li>设置字体</li>
-</ol>
-<p>File–Settings–font        </p>
-<ol>
-<li>修改主题标题栏字体大小</li>
-</ol>
-<p>file–settings -appearance</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/24/Intellij-idea-常用快捷键及设置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-记录下博客步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/22/记录下博客步骤/">记录下博客步骤</a>
-    </h1>
   
 
-        
-        <a href="/2018/02/22/记录下博客步骤/" class="archive-article-date">
-  	<time datetime="2018-02-22T02:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、进入博客目录，形如：D:\中间件项目组\blog</p>
-<p>2、右键–git bash here </p>
-<p>​    $ hexo new “记录下博客步骤”</p>
-<p>3、目录：D:\中间件项目组\blog\source_posts  下可以看到  .md 的文件  添加成功</p>
-<p>4、用  Typora 打开新创建文件，开始编辑文章</p>
-<p>5、hexo g  生成 文件</p>
-<p>6、hexo d 部署到远程 git pages</p>
-<p>7、访问域名 kufu.info 查看效果</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/22/记录下博客步骤/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Typora-a-minimal-markdown-editor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/Typora-a-minimal-markdown-editor/">Typora--a minimal markdown editor</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/11/Typora-a-minimal-markdown-editor/" class="archive-article-date">
-  	<time datetime="2018-02-11T09:01:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h1><p>Thank you for choosing <strong>Typora</strong>. This document will help you to start Typora. Please note that Typora for Windows is still in beta phase, so this document may be updated in future version-ups.</p>
-<h2 id="Live-Preview"><a href="#Live-Preview" class="headerlink" title="Live Preview"></a>Live Preview</h2><p><strong>Typora</strong> use the feature: <em>Live Preview</em>, meaning that you could see these inline styles after you finish typing, and see block styles when you type or after you press <code>Enter</code> key or focus to another paragraph. Just try to type some markdown in typora, and you would see how it works.</p>
-<p><strong>Note</strong>: Markdown tags for inline styles, such as <code>**</code> will be hided or displayed smartly. Markdown tags for block level styles, such as <code>###</code> or <code>- [x]</code> will be hided once the block is rendered.</p>
-<p>You could switch to source code mode temporary from menu bar, footer bar or short cut key (<code>ctrl+/</code>). But </p>
-        
-          <a class="article-more-a" href="/2018/02/11/Typora-a-minimal-markdown-editor/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/11/Typora-a-minimal-markdown-editor/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/11/hello-world/" class="archive-article-date">
-  	<time datetime="2018-02-11T06:45:21.264Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -671,8 +333,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
