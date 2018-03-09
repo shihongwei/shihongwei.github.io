@@ -149,6 +149,78 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java-对象属性复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/08/java-对象属性复制/">java 对象属性复制</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/08/java-对象属性复制/" class="archive-article-date">
+  	<time datetime="2018-03-08T12:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>业务系统中经常需要两个对象进行属性的拷贝，不能否认逐个的对象拷贝是最快速最安全的做法，但是当数据对象的属性字段数量超过程序员的容忍的程度，代码因此变得臃肿不堪，使用一些方便的对象拷贝工具类将是很好的选择。</p>
+<p>性能对比： BeanCopier &gt; PropertyUtils &gt; BeanUtils. 其中BeanCopier的性能高出另外两个100数量级。</p>
+<p>目前流行的较为公用认可的工具类：</p>
+<p>Apache的两个版本：（反射机制）<br>org.apache.commons.beanutils.PropertyUtils.copyProperties(Object dest, Object orig)<br>org.apache.commons.beanutils.BeanUtils.copyProperties(Object dest, Object orig)<br>Spring版本：（反射机制）<br>org.springframework.beans.BeanUtils.copyProperties(Object source, Object target, Class editable, String[] ignoreProperties)<br>cglib版本：（使用动态代理，效率高）<br>net.sf.cglib.beans.BeanCopier.copy(Object paramObject1, Object paramObject2, Converter paramConverter)</p>
+<p>缺陷预防：</p>
+<p>注意1：Spring 的BeanUtils.copyProperties在拷贝属性时忽略空值解决办法。</p>
+<p>当src对象的键值为Null时，就会把target对象的对应键值覆盖成空了。</p>
+<p>注意2：beanutils.Converter使用案例，增强apache的beanUtils的拷贝属性，注册一些新的类型转换。</p>
+<p>注意3：BeanUtils拷贝null属性的问题</p>
+<p>问题现象<br>​       1.当源对象(a)中存在一个java.sql.Date类型的属性并且值为null，目标对象(b)中也存在这个同名同类型的属性。把a对象属性值copy给b时BeanUtils.copyProperties(b, a);会抛出异常；<br>​       2.当源对象(a)中存在一个java.sql.Date类型的属性并且值为null，目标对象(b)不存在这个同名同类型的属性，copy时没问题。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/08/java-对象属性复制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-springboot获取URL请求参数的几种方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
