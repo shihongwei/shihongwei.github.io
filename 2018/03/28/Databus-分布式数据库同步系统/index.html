@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//litten.me">
-  <title>Archives: 2018/3 | Simon 的博客</title>
+  <title>Databus 分布式数据库同步系统 | Simon 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="专注于后端、互联网的开发。此为博客一枚。">
+  <meta name="description" content="社区wiki主页：https://github.com/linkedin/Databus/wiki 背景一个大型分布式系统往往存在多种的存储系统，mysql，tair，redis，memcache，hbase等等。一些重要的或者需要事务支持的数据操作，通常都会放到mysql处理。但是，为了满足高性能的访问需求或者做一些服务定制化的查询，业务上通常又会把mysql的数据再写到tair或者redis等">
 <meta name="keywords" content="专注于后端、互联网的开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Simon 的博客">
-<meta property="og:url" content="//litten.me/archives/2018/03/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Databus 分布式数据库同步系统">
+<meta property="og:url" content="//litten.me/2018/03/28/Databus-分布式数据库同步系统/index.html">
 <meta property="og:site_name" content="Simon 的博客">
-<meta property="og:description" content="专注于后端、互联网的开发。此为博客一枚。">
+<meta property="og:description" content="社区wiki主页：https://github.com/linkedin/Databus/wiki 背景一个大型分布式系统往往存在多种的存储系统，mysql，tair，redis，memcache，hbase等等。一些重要的或者需要事务支持的数据操作，通常都会放到mysql处理。但是，为了满足高性能的访问需求或者做一些服务定制化的查询，业务上通常又会把mysql的数据再写到tair或者redis等">
+<meta property="og:image" content="http://p1.pstatp.com/large/5b45000096e996105c54">
+<meta property="og:image" content="http://p3.pstatp.com/large/5b420004808b5ef51d3d">
+<meta property="og:image" content="http://p9.pstatp.com/large/5b4300040a710e6e30aa">
+<meta property="og:updated_time" content="2018-03-28T03:45:02.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Simon 的博客">
-<meta name="twitter:description" content="专注于后端、互联网的开发。此为博客一枚。">
+<meta name="twitter:title" content="Databus 分布式数据库同步系统">
+<meta name="twitter:description" content="社区wiki主页：https://github.com/linkedin/Databus/wiki 背景一个大型分布式系统往往存在多种的存储系统，mysql，tair，redis，memcache，hbase等等。一些重要的或者需要事务支持的数据操作，通常都会放到mysql处理。但是，为了满足高性能的访问需求或者做一些服务定制化的查询，业务上通常又会把mysql的数据再写到tair或者redis等">
+<meta name="twitter:image" content="http://p1.pstatp.com/large/5b45000096e996105c54">
   
     <link rel="alternative" href="/atom.xml" title="Simon 的博客" type="application/atom+xml">
   
@@ -147,238 +152,202 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Databus-分布式数据库同步系统" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Databus 分布式数据库同步系统
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/28/Databus-分布式数据库同步系统/" class="archive-article-date">
+
+        
+        <a href="/2018/03/28/Databus-分布式数据库同步系统/" class="archive-article-date">
   	<time datetime="2018-03-28T03:36:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-28</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/28/Databus-分布式数据库同步系统/">Databus 分布式数据库同步系统</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>社区wiki主页：<a href="https://github.com/linkedin/Databus/wiki" target="_blank" rel="noopener">https://github.com/linkedin/Databus/wiki</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>一个大型分布式系统往往存在多种的存储系统，mysql，tair，redis，memcache，hbase等等。一些重要的或者需要事务支持的数据操作，通常都会放到mysql处理。但是，为了满足高性能的访问需求或者做一些服务定制化的查询，业务上通常又会把mysql的数据再写到tair或者redis等外部存储中一份。</p>
+<p>以业务将tair作为mysql的高速缓存为例，通常业务在代码中会有这么一段逻辑，读取tair，数据不存在，从mysql读取数据，然后写入tair。用户变更mysql，然后会同时刷新tair，或者将tair数据删除。为了降低客户端复杂度并且防止缓存穿透，常会引入MQ进行异步同步，如下图所示：</p>
+<p><img src="http://p1.pstatp.com/large/5b45000096e996105c54" alt="Databus 分布式数据库同步系统"></p>
+<p>但是无论客户端同步方式还是MQ方式，其实都会存在数据一致性问题，这些场景，如果没有一个强一致协议（比如两阶段提交，paxos等）是很难解决掉的。</p>
+<p>现在，有了Databus，上面提到的这些一致性问题就都没有了，并且，那些冗长的双写逻辑也可以去掉了。</p>
+<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>Databus是一个实时的、可靠的、支持事务的、保持一致性的数据变更抓取系统。 2011年在LinkedIn正式进入生产系统，2013年开源。</p>
+<p>Databus通过挖掘数据库日志的方式，将数据库变更实时、可靠的从数据库拉取出来，业务可以通过定制化client实时获取变更。</p>
+<p>Databus的传输层端到端延迟是微秒级的，每台服务器每秒可以处理数千次数据吞吐变更事件，同时还支持无限回溯能力和丰富的变更订阅功能。</p>
+<p><strong>功能&amp;特性</strong></p>
+<ul>
+<li>来源独立：Databus支持多种数据来源的变更抓取，包括Oracle和MySQL。</li>
+<li>可扩展、高度可用：Databus能扩展到支持数千消费者和事务数据来源，同时保持高度可用性。</li>
+<li>事务按序提交：Databus能保持来源数据库中的事务完整性，并按照事务分组和来源的提交顺寻交付变更事件。</li>
+<li>低延迟、支持多种订阅机制：数据源变更完成后，Databus能在微秒级内将事务提交给消费者。同时，消费者使用Databus中的服务器端过滤功能，可以只获取自己需要的特定数据。</li>
+<li>无限回溯：这是Databus最具创新性的组件之一，对消费者支持无限回溯能力。当消费者需要产生数据的完整拷贝时（比如新的搜索索引），它不会对数据库产生任何额外负担，就可以达成目的。当消费者的数据大大落后于来源数据库时，也可以使用该功能。</li>
+</ul>
+<h1 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h1><p><strong>架构设计</strong></p>
+<p>Databus概要结构：</p>
+<p><img src="http://p3.pstatp.com/large/5b420004808b5ef51d3d" alt="Databus 分布式数据库同步系统"></p>
+<p>图中显示：Search Index和Read Replicas等系统是Databus的消费者。当主数据库发生写操作时，连接其上的中继系统会将数据拉到中继中。签入在Search Index或是缓存中的Databus消费者客户端，就会从中继中拉出数据，并更新索引或缓存。</p>
+<p><strong>系统结构设计</strong></p>
+<p><img src="http://p9.pstatp.com/large/5b4300040a710e6e30aa" alt="Databus 分布式数据库同步系统"></p>
+<p>上图中介绍了Databus系统的构成，包括中继Relay、bootstrap服务和客户端库。Bootstrap服务中包括Bootstrap Producer和Bootstrap Server。快速变化的消费者直接从Relay中取事件。如果一个消费者的数据更新大幅落后，它要的数据就不在Relay的日志中，而是在 Bootstrap Producer里面，提交给它的，将会是自消费者上次处理变更之后的所有数据变更快照。</p>
+<ul>
+<li><strong>Databus Relay中继的功能主要包括</strong>：</li>
+</ul>
+<ol>
+<li>从Databus来源读取变更行，并在内存缓存内将其序列化为Databus变更事件</li>
+<li>监听来自Databus客户端（包括Bootstrap Producer）的请求，并传输新的Databus数据变更事件</li>
+</ol>
+<ul>
+<li><strong>Databus客户端的功能主要包括：</strong></li>
+</ul>
+<ol>
+<li>检查Relay上新的数据变更事件，并执行特定业务逻辑的回调</li>
+<li>如果落后Relay太多，向Bootstrap Server发起查询</li>
+<li>新Databus客户端会向Bootstrap Server发起bootstrap启动查询，然后切换到向中继发起查询，以完成最新的数据变更事件</li>
+<li>单一客户端可以处理整个Databus数据流，或者可以成为消费者集群的一部分，其中每个消费者只处理一部分流数据</li>
+</ol>
+<ul>
+<li><strong>Databus Bootstrap Producer的功能有：</strong></li>
+</ul>
+<ol>
+<li>检查中继上的新数据变更事件</li>
+<li>将变更存储在MySQL数据库中</li>
+<li>MySQL数据库供Bootstrap和客户端使用</li>
+</ol>
+<ul>
+<li><strong>Databus Bootstrap Server的主要功能</strong>，监听来自Databus客户端的请求，并返回长期回溯数据变更事件。</li>
+</ul>
+<h1 id="业务应用"><a href="#业务应用" class="headerlink" title="业务应用"></a>业务应用</h1><p><strong>Databus在linkedin</strong></p>
+<p>在LinkedIn，Databus支持的系统有：</p>
+<ul>
+<li>社会化图谱索引（Social Graph Index），服务LinkedIn所有图谱查询</li>
+<li>人员搜索索引（People Search Index），支持搜索所有LinkedIn用户</li>
+<li>用户档案数据（Member Profile）多个冗余的读取查询</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://litten.me/2018/03/28/Databus-分布式数据库同步系统/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/27/从零开始玩转logback/" class="archive-article-date">
-  	<time datetime="2018-03-27T03:32:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/27/从零开始玩转logback/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从零开始玩转logback</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/27/从零开始玩转logback/">从零开始玩转logback</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/26/TCP协议详解/" class="archive-article-date">
-  	<time datetime="2018-03-26T02:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/26/TCP协议详解/">TCP协议详解</a>
-    </h1>
+  <div id="SOHUCS" sid="Databus-分布式数据库同步系统" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cysX3aGWt",
+        conf: "prod_1dcda447175aada96edcdb7e412338fa"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/12/正确的打日志姿势/" class="archive-article-date">
-  	<time datetime="2018-03-12T01:53:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/12/正确的打日志姿势/">正确的打日志姿势</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/09/如何编写相对标准的后端项目之设计-Restful-API/" class="archive-article-date">
-  	<time datetime="2018-03-09T03:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/09/如何编写相对标准的后端项目之设计-Restful-API/">如何编写相对标准的后端项目之设计 Restful API</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/08/java-对象属性复制/" class="archive-article-date">
-  	<time datetime="2018-03-08T12:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/08/java-对象属性复制/">java 对象属性复制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/springboot获取URL请求参数的几种方法/" class="archive-article-date">
-  	<time datetime="2018-03-07T06:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/07/springboot获取URL请求参数的几种方法/"> springboot获取URL请求参数的几种方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/HttpClient-RetryHandler重试（一）/" class="archive-article-date">
-  	<time datetime="2018-03-07T02:25:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/07/HttpClient-RetryHandler重试（一）/">HttpClient-RetryHandler重试（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -401,8 +370,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
